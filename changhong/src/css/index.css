@@ -181,7 +181,10 @@ a:hover {
   font-size: 16px;
   line-height: 78px;
 }
-.head-nav-ul li:hover a {
+.head-nav-ul li:hover > a {
+  color: #f12020;
+}
+.head-nav-ul li:nth-of-type(1) a {
   color: #f12020;
 }
 .head-nav-ul li:hover .head-nav-sub {
@@ -212,7 +215,23 @@ a:hover {
 
 .head-sub-box {
   float: left;
+  margin: 22px 36px 0px;
   position: relative;
+}
+.head-sub-box img {
+  width: 135px;
+  height: 135px;
+  margin: 0;
+  display: block;
+}
+.head-sub-box p {
+  height: 24px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 23px;
+}
+.head-sub-box p:nth-child(3) {
+  color: #f12020;
 }
 
 .search-box {

@@ -24,19 +24,24 @@ $head-nav-height: 78px;
     text-align: center;
     font-size: 16px;
     line-height: $head-nav-height;
-    &:hover a {
+    &:hover > a {
+      color: #f12020;
+    }
+    &:nth-of-type(1) a{
       color: #f12020;
     }
     &:hover .head-nav-sub {
       //   display: block;
       height: 230px;
     }
+    
   }
 }
 .head-nav-sub {
   //二级导航栏
   width: 100%;
   height: 0;
+  // height: 230px;
   left: 0;
   overflow: hidden;
   position: absolute;
@@ -46,7 +51,7 @@ $head-nav-height: 78px;
 }
 .head-nav-sub-container {
   @include banxin();
-  >p {
+  > p {
     line-height: 229px;
     height: 229px;
     padding-left: 45px;
@@ -56,8 +61,26 @@ $head-nav-height: 78px;
 }
 .head-sub-box {
   float: left;
-//   margin: 22px 36px 0px;
+  margin: 22px 36px 0px;
   position: relative;
+  img {
+    width: 135px;
+    height: 135px;
+    margin: 0;
+    display: block;
+  }
+
+  p {
+    height: 24px;
+    overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+    text-align: center;
+    line-height: 23px;
+  }
+  p:nth-child(3){
+    color: #f12020;
+  }
 }
 
 //搜索框
