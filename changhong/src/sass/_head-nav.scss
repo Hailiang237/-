@@ -45,6 +45,7 @@ $head-nav-height: 78px;
   left: 0;
   overflow: hidden;
   position: absolute;
+  z-index: 100;
   //   display: none;
   background: #ffffff;
   transition: all 0.4s;
@@ -113,3 +114,4 @@ $head-nav-height: 78px;
   cursor: pointer;
   background: url(../img/home-serach-btn_05.png) no-repeat left center;
 }
+

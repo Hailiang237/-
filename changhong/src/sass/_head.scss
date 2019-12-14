@@ -42,6 +42,7 @@ $head-height: 35px;
 }
 .head-right {
   float: right;
+  margin-right: 120px;
   li {
     @extend %head_li;
     width: 120px;
@@ -50,15 +51,18 @@ $head-height: 35px;
     }
   }
 }
-.login-container {//登录注册
-  a {
+.login-container {
+  //登录注册
+  .login,
+  .register {
     display: inline;
-  }
-  a:hover {
-    background: transparent;
-    color: #f12020;
+    &:hover {
+      background: transparent;
+      color: #f12020;
+    }
   }
 }
-.user-container {//已登陆
+.user-container {
+  //已登陆
   display: none;
 }
