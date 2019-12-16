@@ -779,10 +779,12 @@ a:hover {
 
 .xhome-fixl {
   position: fixed;
+  z-index: 90;
   top: 50%;
   left: 50%;
   margin-left: -670px;
   margin-top: -150px;
+  background: #fff;
 }
 .xhome-fixl li {
   width: 45px;
@@ -811,6 +813,7 @@ a:hover {
 
 .pro-float-box {
   position: fixed;
+  z-index: 90;
   right: 0px;
   bottom: 224px;
   display: block;
