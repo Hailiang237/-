@@ -19,7 +19,7 @@ class Tool {
                     obj.data = obj.data;
                 }
                 //4.数组存在，同时get请求，将数据拼接到地址栏的后面
-    
+
             }
             if (obj.data && obj.type === 'get') {
                 obj.url += '?' + obj.data;
@@ -71,7 +71,7 @@ class Tool {
         });
         return promise;
     }
-    
+
     objToString(obj) {//对象转字符串
         if (Object.prototype.toString.call(obj).slice(8, -1) === 'Object') {
             let objarr = [];
@@ -99,26 +99,19 @@ class Tool {
     delcookie(key) {//删产出cookie
         document.cookie = `${key}='';-1`;
     }
+
 }
 var tool = new Tool();
 
-// class Jquery{
-//     constructor(){
-
-//     }
-
-// }
-
-
-function $(selecter){//取元素
-    let obj = document.querySelectorAll(selecter);
-    if(obj.length>1){
-        return obj;
-    }else{
+function $(select){//取元素
+    let obj = document.querySelectorAll(select);
+    if(obj.length===1){
         return obj[0];
+    }else{
+        return obj;
     }
-}
 
+}
 export {
     tool,$
 }

@@ -12,16 +12,13 @@ const babel = require('gulp-babel'); //es6转es5主要模块
 const bablecore = require('babel-core'); //es6转es5主要模块
 const es2015 = require('babel-preset-es2015'); //es6转es5主要模块
 const watch = require('gulp-watch'); //引入监听模块
-
+const browserify = require('browserify');//让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码
+const source = require('vinyl-source-stream');//将Browserify的bundle()的输出转换为Gulp可用的vinyl（一种虚拟文件格式）流
 
 //1.gulp.task(任务名,回调函数):创建新的任务。
 //2.gulp.src('url'):引入文件的路径
 //3.pipe 管道流
 //4.gulp.dest():输出文件的路径，自动创建对应的文件名称。
-
-// gulp.task('hehe',function(){
-//     console.log('hello,gulp!!');
-// });
 
 //2.copy文件
 gulp.task('copyfile', function () {
@@ -79,10 +76,25 @@ gulp.task('copyimg', function () {
 });
 
 
+
+
+
+//browserify 插件使用
+gulp.task("browserify", function () {
+    var b = browserify({
+        entries: 'dist/script/' //主入口地址
+    });
+
+    return b.bundle()
+        .pipe(source("bundle.js")) //修改后的入口地址
+        .pipe(gulp.dest("dist/script"));
+});
+
 //最终监听
 //每一个任务先跑一次，再进行监听
 gulp.task('default',function(){
     //文件路径
-    watch(['src/font/*','src/*.html','src/sass/*.scss','src/script/*.js','src/img/*'],gulp.parallel('copyfile','uglifyhtml','compilesass','uglifyjs','copyimg'));//任务名
+    watch(['src/font/*','src/*.html','src/sass/*.scss','src/script/*.js','src/img/*'],gulp.parallel('copyfile','uglifyhtml','compilesass',['uglifyjs','browserify'],'copyimg'));//任务名
 });
 
+// ulp.task('start', ['uglifyhtml', 'compilesass','copyimg', 'uglifyjs','browserify', 'default']);
