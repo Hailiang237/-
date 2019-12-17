@@ -1,0 +1,63 @@
+@charset "utf-8";
+.home-activity {
+  @include banxin();
+  height: 160px;
+  margin-bottom: 30px;
+}
+.home-activity-img {
+  height: 160px;
+  width: 320px;
+  margin-left: 13px;
+  float: left;
+  img{
+      width: 320px;
+      height: 160px;
+  }
+}
+
+.activity-nav-line-f,
+.activity-nav-line-s {
+  //分割线
+  position: absolute;
+  display: block;
+  background: #717171;
+}
+.activity-nav-line-f {
+  top: 50%;
+  width: 100%;
+  height: 1px;
+}
+.activity-nav-line-s {
+  left: 50%;
+  height: 100%;
+  width: 1px;
+}
+
+.home-activity-nav {
+  //左边的4个导航栏
+  width: 226px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  background: #585858;
+  li {
+    width: 50%;
+    height: 80px;
+    float: left;
+    a {
+      display: block;
+      height: 79px;
+      font-size: 14px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 1;
+      img {
+        padding: 15px 0px 5px;
+        height: 30px;
+        width: 30px;
+        margin: 0px auto;
+        display: block;
+      }
+    }
+  }
+}

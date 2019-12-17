@@ -1,0 +1,15 @@
+@charset "utf-8";
+.pro-float-box {
+    position: fixed;
+    z-index: 90;
+    right: 0px;
+    bottom: 224px;
+    display: block;
+    ul li {
+        width: 40px;
+        height: 40px;
+        img {
+            border: 0;
+        }
+    }
+}

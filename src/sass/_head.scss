@@ -1,0 +1,68 @@
+@charset "utf-8";
+$head-height: 35px;
+%head_a {
+  display: block;
+  width: 100%;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: $head-height;
+  text-align: center;
+  &:hover {
+    background: #555555;
+  }
+}
+%head_li {
+  float: left;
+  height: $head-height;
+  color: #ffffff;
+  & > a {
+    @extend %head_a;
+  }
+  img {
+    border: 0;
+    vertical-align: middle;
+  }
+}
+#head {
+  width: 100%;
+  height: $head-height;
+  background: #333333;
+}
+.head-container {
+  @include banxin();
+  height: 100%;
+}
+.head-left {
+  float: left;
+  height: $head-height;
+  li {
+    @extend %head_li;
+    width: 145px;
+  }
+}
+.head-right {
+  float: right;
+  margin-right: 120px;
+  li {
+    @extend %head_li;
+    width: 120px;
+    img {
+      margin-right: 4px;
+    }
+  }
+}
+.login-container {
+  //登录注册
+  .login,
+  .register {
+    display: inline;
+    &:hover {
+      background: transparent;
+      color: #f12020;
+    }
+  }
+}
+.user-container {
+  //已登陆
+  display: none;
+}
