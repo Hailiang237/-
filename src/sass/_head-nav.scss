@@ -30,10 +30,11 @@ $head-nav-height: 78px;
     &:nth-of-type(1) a{
       color: #f12020;
     }
-    &:hover .head-nav-sub {
-      //   display: block;
-      height: 230px;
-    }
+    // &:hover .head-nav-sub {
+    //   //   display: block;
+    //   height: 230px;
+    //   z-index: 100;
+    // }
     
   }
 }
@@ -45,10 +46,10 @@ $head-nav-height: 78px;
   left: 0;
   overflow: hidden;
   position: absolute;
-  z-index: 100;
-  //   display: none;
+  z-index: 50;
+    display: none;
   background: #ffffff;
-  transition: all 0.4s;
+  // transition: height 0.4s;
 }
 .head-nav-sub-container {
   @include banxin();
