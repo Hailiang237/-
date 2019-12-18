@@ -1,6 +1,13 @@
 class Tool {
     constructor() {
-
+        //  ajax obj的参数,
+        //  obj = {
+        //  type:"get"||"post" ,//默认值get
+        //  url:"" ,//接口地址,必填
+        //  async:true || flase //默认值true 异步
+        //  dataType:"json"//得到的数据是否 json 转数组
+        //  data:{}//传给后端数据
+        // }
     }
     ajax(obj) {// ajax 方法
         let promise = new Promise((resolve, reject) => {
@@ -58,7 +65,7 @@ class Tool {
             } else {
                 if (ajax.status === 200) {
                     let objdata = null;
-                    if (obj.dataType == 'josn') {//数据JOSN格式 转数组/对象
+                    if (obj.dataType == 'json') {//数据JSON格式 转数组/对象
                         objdata = JSON.parse(ajax.responseText);
                     } else {
                         objdata = ajax.responseText;

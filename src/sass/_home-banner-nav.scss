@@ -10,13 +10,16 @@
 }
 #main-banner {
   //   position: relative;
-  width: 100%;
+  @include banxin();
+  // width: 100%;
   overflow: hidden;
   height: 500px;
   margin: 0 auto;
+  
 }
 .banner-box {
-  left: -350px;
+  // margin-left: -350px;
+  left:-350px;
   width: 1920px;
   height: 500px;
   margin: 0 auto;

@@ -1,5 +1,6 @@
 import { tool, $ } from "./tool.js";//引入模块
-class Banner {//轮播图
+//轮播图
+class Banner {
     constructor() {
         this.banner_num = $(".banner-num li");//点击的是子元素li .active
         this.banner_img = $(".banner-box img");//轮播图片img  .select
@@ -45,20 +46,6 @@ class Banner {//轮播图
         this.pindex = this.nindex;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 导航栏hover效果
 class Head_nav {
     constructor() {
@@ -66,10 +53,10 @@ class Head_nav {
         this.head_nav_ul_li = $(".head-nav-ul li");//一级导航栏的盒子,1-6
         this.head_nav_ul = $(".head-nav-ul");
         this.flag = false;//是否已经打开了二级导航栏,true:切换li时 直接显示,
-        this.index =1;
+        this.index = 1;
         this.pindex = 1;
-        this.timer1= null;//moveout 显示的定时器
-        this.timer2= null;//hide 隐藏的定时器
+        this.timer1 = null;//moveout 显示的定时器
+        this.timer2 = null;//hide 隐藏的定时器
         this.timer3 = null;//延时定时器
 
         //移动到li下面 二级导航动画显示, 
@@ -83,16 +70,16 @@ class Head_nav {
                 clearTimeout(this.timer3);
                 clearTimeout(this.timer2);
                 clearTimeout(this.timer1);
-                
+
                 // console.log("已经清楚定时器timer3,2,1")
-                _this.timer3 = setTimeout(function(){
+                _this.timer3 = setTimeout(function () {
                     if (_this.flag === false) {
                         _this.moveout();
                     } else {
                         _this.change();
                     }
-                },400)
- 
+                }, 400)
+
             }
         }
         this.head_nav_ul.onmouseleave = function () {//onmouseleave 当用户将鼠标指针移出对象边界时触发。            
@@ -110,8 +97,8 @@ class Head_nav {
         this.flag = false;
         let _this = this;
         let speed = 5;
-       
-        this.timer3 = setTimeout(function(){ 
+
+        this.timer3 = setTimeout(function () {
             clearInterval(_this.timer2);
             _this.timer2 = setInterval(function () {
                 _this.head_nav_sub[_this.index - 1].style.height = _this.head_nav_sub[_this.index - 1].offsetHeight - speed + "px";
@@ -121,13 +108,13 @@ class Head_nav {
                     _this.head_nav_sub[_this.index - 1].style.display = "none";
                     clearInterval(_this.timer2);
                     // console.log("已清除定时器timer2")
-    
-    
+
+
                 }
             }, 8);
-        },200)
-        
-        
+        }, 200)
+
+
     }
     change() {
         // console.log("change:" + this.index,this.pindex,this.flag);
@@ -161,6 +148,95 @@ class Head_nav {
         }, 8)
     }
 }
+//主页渲染 render 和 Lazy loading
+class Lazy {
+    constructor() {
+        this.render_content = $(".home-series-content");
+        this.tv = $("#tv");
+    }
+    init() {
+        this.render();
+    }
+    render(box) {//渲染
+        let _this = this;
+        tool.ajax({
+            data: {
+                sort: "电视产品"
+            },
+            url: "http://10.31.161.172/MyProject/php/get.php",
+            type: "post",
+            dataType: "json",
+            async: true
+        }).then(function (data) {
+            let maindata = _this.getmain(data);
+            let sortdata = _this.getsort(data);
+            console.log(data);
+            let str = `
+                <div class="home-series xfindex">
+                <div class="home-series-left">
+                    <div class="home-series-title home-theme-TV">
+                        <p>电视产品</p>
+                        <a href="javascript:;" target="">查看更多 &gt;</a>
+                    </div>
+                    <a href="http://10.31.161.172/MyProject/dist/details.html?${maindata.sid}"
+                        class="home-series-tj" target="_blank">
+                        <img class="lazy" alt="" src=${maindata.url_main} width="226" height="630">
+                    </a>
+                </div>
+                <div class="home-series-content">
+                    <div class="home-series-nav">
+                        <ul>`
+                        for(let p of sortdata){
+                            str+=`<li> ${p}</li>`;
+                        }          
+                        str += `</ul>
+                    </div>
+                    <div class="home-goods-right" id="TV-div-number">
+                    `
+            for (let i = 0; i < 8; i++) {
+                str += `
+                    <div class="home-ele-f ">
+                        <div class="home-ele-img">
+                            <a href="http://10.31.161.172/MyProject/dist/details.html?${data[i].sid}"
+                                target="_blank">
+                                <img class="lazy" alt=""
+                                    src=${data[i].url_show}>
+                            </a>
+                        </div>
+                        <div class="home-ele-text">
+                            <h1><a href="http://10.31.161.172/MyProject/dist/details.html?${data[i].sid}"
+                                    target="_blank" title=${data[i].name}>${data[i].name}</a></h1>
+                            <p>${data[i].s_title}</p>
+                            <h2>￥${data[i].price}</h2>
+                        </div>
+                    </div>
+                    `
+            }
+            str += `</div></div></div></div>`
 
 
-export { Banner, Head_nav }
+            _this.render_content[0].innerHTML = str;
+        })
+
+    }
+    getmain(data) {//找到main标记的数据记录
+        for (let obj of data) {
+            if (obj.main == "true") {
+                return obj;
+            }
+        }
+    }
+
+    getsort(data) {//找到标签导航
+        let sortarr = [];
+        for (let obj of data) {
+            if (sortarr.indexOf(obj.sort_2) < 0) {
+                sortarr.push(obj.sort_2);
+            }
+        }
+        console.log(sortarr)
+        return sortarr;
+    }
+}
+
+export { Banner, Head_nav, Lazy }
