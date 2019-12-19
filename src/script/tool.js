@@ -107,6 +107,47 @@ class Tool {
         document.cookie = `${key}='';-1`;
     }
 
+    bufferMove(obj, json,fn) {//obj:运动的对象         jsnn:要改变的css属性和属性值       fn:回调函数
+        let _this = this;
+        let flag = true;
+        clearInterval(obj.timer);//防止定时器的叠加
+        let speed = 0;
+        obj.timer = setInterval(function () {
+            console.log(speed)
+            flag = true;//假设运动都结束了
+            for (let attr in json) {//遍历变量
+                let target = json[attr];
+                if (attr === 'opacity') {//透明度属性
+                    let value = _this.getStyle(obj, attr) * 100;
+                } else {//其他属性
+                    let value = parseInt(_this.getStyle(obj, attr));//当前的css属性值
+                }
+                speed = (target - value) / 10;//减速
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);//为了不让最后的speed是小数
+                if (value!= target) { //如果还没运动完成
+                    if (attr === 'opacity') {//透明度属性
+                        obj.style.opacity = (value + speed) / 100;
+                        obj.style.filter = 'alpha(opacity=' + (value + speed) / 100 + ');';
+                    } else {//其他px单位属性
+                        obj.style[attr] = (value + speed) + 'px';
+                    }
+                    flag = false;
+                }
+            }
+            if (flag){//取消定时器
+                    clearInterval(obj.timer);
+                    fn && typeof fn === 'function' && fn(); //运动完成，执行回调函数。
+                }
+        }, 1000 / 60)
+    }
+    getStyle(obj, attr) { //obj:当前元素对象  attr:获取css属性名称  值有单位
+        if (window.getComputedStyle) {
+            return window.getComputedStyle(obj)[attr];
+        } else {
+            return obj.currentStyle[attr];
+        }
+    }
+
 }
 var tool = new Tool();
 
