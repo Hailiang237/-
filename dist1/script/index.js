@@ -1,0 +1,1 @@
+"use strict";var _tool=require("./tool.js"),_effect=require("./effect.js");"index_html"===document.body.id&&((new _effect.Banner).init(),(new _effect.Head_nav).init(),(new _effect.Lazy).init());
