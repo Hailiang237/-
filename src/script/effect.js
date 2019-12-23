@@ -7,10 +7,12 @@ class Banner {
         this.pindex = 0;//当前激活的 下标
         this.nindex = 0;//要切换的下标
         this.timer = null;//自动轮播定时器
+ 
     }
     init() {
         this.banner_num_click();
         this.auto_change();
+
     }
     banner_num_click() {
         let _this = this;
@@ -314,11 +316,11 @@ class Lazy {
             // document.documentElement.scrollTop = -80 + this.home_activity.offsetTop;
             this.move(-80 + this.home_activity.offsetTop)
         }
-        this.louti_li[this.louti_li.length-1].onclick = () => {
+        this.louti_li[this.louti_li.length - 1].onclick = () => {
             // document.documentElement.scrollTop = -80 + this.home_activity.offsetTop;
-            this.move(-100 + this.render_content[this.render_content.length-1].offsetTop)
+            this.move(-100 + this.render_content[this.render_content.length - 1].offsetTop)
         }
-        for (let i = 1; i < this.louti_li.length-1; i++) {
+        for (let i = 1; i < this.louti_li.length - 1; i++) {
             this.louti_li[i].onclick = () => {
                 this.lazy();
                 this.move(-80 + this.render_content[i - 1].offsetTop)
@@ -344,7 +346,7 @@ class Lazy {
             if (now != target) { //如果还没运动完成
                 document.documentElement.scrollTop = (now + speed);
                 flag = false;
-            }else{
+            } else {
                 clearInterval(document.documentElement.time);
             }
             console.log(1)
@@ -360,6 +362,7 @@ class Lazy {
         }
         this.louti_li[i].className = "clicked";
     }
+
 }
 
 export { Banner, Head_nav, Lazy }

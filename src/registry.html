@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./script/bundle.js"  async="true" id = "registry"></script>  
+</head>
+<body>
+    <section id="head-nav">
+        <img src="http://cn.changhong.com/gwsy/images/P020161125568572860644.png" alt="" class="logo"><span>注册</span>
+    </section>
+    <form action="http://10.31.161.172/MyProject/php/submit.php" method="POST" id="form">
+
+        <div>
+            <label for="email">邮箱:</label><input type="text" placeholder="请输入邮箱" id="email" value=""
+                name="email"><span></span>
+        </div>
+        <div>
+            <label for="password1">设置密码:</label><input type="text" placeholder="6-16位大小写英文字母、数字或符号的组合" id="password1"
+                value="" name="password"><span></span>
+            <p class="pass">安全强度: <span>低</span><span>中</span><span>高</span></p>
+        </div>
+        <div>
+            <label for="password2">确认密码:</label><input type="text" placeholder="请再次输入密码" id="password2"
+                value=""><span></span>
+        </div>
+        <div>
+            <label for="phone">手机号码:</label><input type="text" placeholder="请输入手机号码" id="phone" value=""
+                name="phone"><span></span>
+        </div>
+        <div>
+            <label for="vcode">图形验证码:</label><input type="text" id="vcode" value="">
+            <span class="yzm"></span>
+            <span>看不清?</span>
+            <span class="hyz">换一张</span>
+            <span class="tishi"></span>
+        </div>
+        <div>
+            <input type="submit" name="" id="submit" value="同意协议并注册">
+        </div>
+    </form>
+</body>
+</html>

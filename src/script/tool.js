@@ -107,7 +107,7 @@ class Tool {
         document.cookie = `${key}='';-1`;
     }
 
-    bufferMove(obj, json,fn) {//obj:运动的对象         jsnn:要改变的css属性和属性值       fn:回调函数
+    bufferMove(obj, json, fn) {//obj:运动的对象         jsnn:要改变的css属性和属性值       fn:回调函数
         let _this = this;
         let flag = true;
         clearInterval(obj.timer);//防止定时器的叠加
@@ -124,7 +124,7 @@ class Tool {
                 }
                 speed = (target - value) / 10;//减速
                 speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);//为了不让最后的speed是小数
-                if (value!= target) { //如果还没运动完成
+                if (value != target) { //如果还没运动完成
                     if (attr === 'opacity') {//透明度属性
                         obj.style.opacity = (value + speed) / 100;
                         obj.style.filter = 'alpha(opacity=' + (value + speed) / 100 + ');';
@@ -134,10 +134,10 @@ class Tool {
                     flag = false;
                 }
             }
-            if (flag){//取消定时器
-                    clearInterval(obj.timer);
-                    fn && typeof fn === 'function' && fn(); //运动完成，执行回调函数。
-                }
+            if (flag) {//取消定时器
+                clearInterval(obj.timer);
+                fn && typeof fn === 'function' && fn(); //运动完成，执行回调函数。
+            }
         }, 1000 / 60)
     }
     getStyle(obj, attr) { //obj:当前元素对象  attr:获取css属性名称  值有单位
@@ -147,19 +147,25 @@ class Tool {
             return obj.currentStyle[attr];
         }
     }
-
+    rannum(min, max) {
+        return Math.random() * (max - min) + min;
+    }
 }
 var tool = new Tool();
 
-function $(select){//取元素
+function $(select,flag) {//取元素
+    flag = flag||false;
+
     let obj = document.querySelectorAll(select);
-    if(obj.length===1){
+    if(flag){
+        return obj;
+    }else if (obj.length === 1) {
         return obj[0];
-    }else{
+    } else {
         return obj;
     }
 
 }
 export {
-    tool,$
+    tool, $
 }
